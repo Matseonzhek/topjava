@@ -31,6 +31,4 @@ public class UserMealWithExcess {
     public LocalDateTime getDateTime() {
         return dateTime;
     }
-
-
 }
