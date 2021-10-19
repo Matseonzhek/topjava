@@ -22,6 +22,26 @@
     <hr/>
     <h2>Meals</h2>
     <a href="meals?action=create">Add Meal</a>
+    <h3 class="text-center">Моя еда</h3>
+
+
+<form method="get" >
+
+<%--    <dl>--%>
+        <dt><label> От даты До даты  </label></dt>
+        <dd><label>
+            <input type="date" name="startDate" >  <input type="date" name="endDate" >
+        </label></dd>
+<%--    </dl>--%>
+
+<%--    <dl>--%>
+        <dt><label> От времени  До времени </label></dt>
+        <dd> <input type="time" name="startTime" > <input type="time" name="endTime" > </dd>
+<%--    </dl>--%>
+</form>
+    <button> <a href="meals?action=filter">
+        Отфильтровать</a>
+    </button>
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
@@ -34,6 +54,7 @@
         </tr>
         </thead>
         <c:forEach items="${meals}" var="meal">
+
             <jsp:useBean id="meal" type="ru.javawebinar.topjava.to.MealTo"/>
             <tr class="${meal.excess ? 'excess' : 'normal'}">
                 <td>
