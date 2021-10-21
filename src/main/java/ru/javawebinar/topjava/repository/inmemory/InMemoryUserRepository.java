@@ -53,7 +53,7 @@ public class InMemoryUserRepository implements UserRepository {
         log.info("getAll");
         Collection<User> nonSortedUserList = repository.values();
         return nonSortedUserList.stream()
-                .sorted(Comparator.comparing(AbstractNamedEntity::getName))
+                .sorted(Comparator.comparing(User::getName).thenComparing(User::getEmail))
                 .collect(Collectors.toList());
     }
 
@@ -63,6 +63,6 @@ public class InMemoryUserRepository implements UserRepository {
         Collection<User> nonSortedUserList = repository.values();
         return nonSortedUserList.stream()
                 .filter(user -> email.toLowerCase().equals(user.getEmail()))
-                .findFirst().get();
+                .findFirst().orElse(null);
     }
 }
