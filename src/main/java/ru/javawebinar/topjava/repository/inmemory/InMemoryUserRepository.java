@@ -8,7 +8,10 @@ import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
 import ru.javawebinar.topjava.util.UserUtil;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -16,7 +19,7 @@ import java.util.stream.Collectors;
 @Repository
 public class InMemoryUserRepository implements UserRepository {
     private static final Logger log = LoggerFactory.getLogger(InMemoryUserRepository.class);
-    private final Map<Integer,User> repository = new ConcurrentHashMap<>();
+    private final Map<Integer, User> repository = new ConcurrentHashMap<>();
     private final AtomicInteger counter = new AtomicInteger(0);
 
     {
@@ -26,15 +29,15 @@ public class InMemoryUserRepository implements UserRepository {
     @Override
     public boolean delete(int id) {
         log.info("delete {}", id);
-        return repository.remove(id)!=null;
+        return repository.remove(id) != null;
     }
 
     @Override
     public User save(User user) {
         log.info("save {}", user);
-        if(user.isNew()){
+        if (user.isNew()) {
             user.setId(counter.getAndIncrement());
-            repository.put(user.getId(),user);
+            repository.put(user.getId(), user);
         }
         return repository.computeIfPresent(user.getId(), (id, oldUser) -> user);
     }
@@ -50,8 +53,8 @@ public class InMemoryUserRepository implements UserRepository {
         log.info("getAll");
         Collection<User> nonSortedUserList = repository.values();
         return nonSortedUserList.stream()
-               .sorted(Comparator.comparing(AbstractNamedEntity::getName))
-               .collect(Collectors.toList());
+                .sorted(Comparator.comparing(AbstractNamedEntity::getName))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -59,8 +62,7 @@ public class InMemoryUserRepository implements UserRepository {
         log.info("getByEmail {}", email);
         Collection<User> nonSortedUserList = repository.values();
         return nonSortedUserList.stream()
-                .filter(user->email.equals(user.getEmail()))
-                .sorted(Comparator.comparing(User::getEmail))
+                .filter(user -> email.toLowerCase().equals(user.getEmail()))
                 .findFirst().get();
     }
 }

@@ -11,9 +11,7 @@ public abstract class AbstractBaseEntity {
         this.id = id;
     }
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() {return id;}
 
     public boolean isNew() {
         return this.id == null;

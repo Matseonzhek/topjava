@@ -25,23 +25,25 @@
     <h3 class="text-center">Моя еда</h3>
 
 
-<form method="get" >
+<form method="get" action="meals">
+    <input type="hidden" name="action" value="filter">
 
 <%--    <dl>--%>
         <dt><label> От даты До даты  </label></dt>
         <dd><label>
-            <input type="date" name="startDate" >  <input type="date" name="endDate" >
+            <input type="date" name="startDate" value="${param.startDate}">
+            <input type="date" name="endDate" value="${param.endDate}">
         </label></dd>
 <%--    </dl>--%>
 
 <%--    <dl>--%>
         <dt><label> От времени  До времени </label></dt>
-        <dd> <input type="time" name="startTime" > <input type="time" name="endTime" > </dd>
+        <dd> <input type="time" name="startTime" value="${param.startTime}">
+            <input type="time" name="endTime" value="${param.endTime}"> </dd>
 <%--    </dl>--%>
+
+    <button type="submit"> Отфильтровать    </button>
 </form>
-    <button> <a href="meals?action=filter">
-        Отфильтровать</a>
-    </button>
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
