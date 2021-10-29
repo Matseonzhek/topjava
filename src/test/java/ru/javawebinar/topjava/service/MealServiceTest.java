@@ -9,14 +9,13 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.javawebinar.topjava.model.Meal;
-import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
-import static ru.javawebinar.topjava.UserTestData.*;
-import static ru.javawebinar.topjava.UserTestData.assertMatch;
-import static ru.javawebinar.topjava.web.user.MealTestData.*;
+import static org.junit.Assert.assertThrows;
+import static ru.javawebinar.topjava.MealTestData.*;
+import static ru.javawebinar.topjava.UserTestData.ADMIN_ID;
+import static ru.javawebinar.topjava.UserTestData.USER_ID;
 
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",
@@ -44,7 +43,7 @@ public class MealServiceTest {
     @Test
     public void delete() {
         mealService.delete(100002, USER_ID);
-        assertThrows(NotFoundException.class, ()->mealService.get(100000,USER_ID));
+        assertThrows(NotFoundException.class, ()->mealService.get(100002,USER_ID));
     }
 
 
