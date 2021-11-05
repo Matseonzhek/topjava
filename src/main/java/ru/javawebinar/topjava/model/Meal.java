@@ -1,8 +1,11 @@
 package ru.javawebinar.topjava.model;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,7 +21,7 @@ import java.time.LocalTime;
 })
 
 @Entity
-@Table(name = "meals", uniqueConstraints = {@UniqueConstraint(columnNames = {"id", "user_id"})})
+@Table(name = "meals", uniqueConstraints = {@UniqueConstraint(columnNames = { "user_id", "date_time"})})
 public class Meal extends AbstractBaseEntity {
 
     public static final String MEAL_DELETE = "Meal.delete";
@@ -27,19 +30,22 @@ public class Meal extends AbstractBaseEntity {
     public static final String MEAL_ID = "Meal.getById";
     public static final String MEAL_UPDATE = "Meal.update";
 
-    @Column(name = "date_time", nullable = false, unique = true, columnDefinition = "timestamp")
+    @Column(name = "date_time", nullable = false)
     @NotNull
     private LocalDateTime dateTime;
 
     @Column(name = "description", nullable = false)
     @NotBlank
+    @Size(min = 2, max = 50)
     private String description;
 
     @Column(name = "calories", nullable = false)
+    @Range(min = 10, max = 5000)
     private int calories;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
 
     public Meal() {
