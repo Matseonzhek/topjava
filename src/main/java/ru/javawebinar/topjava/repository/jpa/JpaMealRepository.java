@@ -14,7 +14,6 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-@Profile("jpa")
 public class JpaMealRepository implements MealRepository {
 
     @PersistenceContext
