@@ -6,3 +6,5 @@ log
 *.patch
 
 
+/Test Results - DataJpaMealServiceTest.html
+/Test Results - DataJpaMealServiceTest1.html
