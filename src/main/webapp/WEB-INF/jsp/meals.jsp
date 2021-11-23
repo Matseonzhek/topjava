@@ -2,10 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://topjava.javawebinar.ru/functions" %>
-<html>
+<!DOCTYPE html>
+<jsp:include page="fragments/headTag.jsp"/>
 <head>
     <title>Meals</title>
-    <link rel="stylesheet" href="css/style.css">
+    <%--    <link rel="stylesheet" href="css/style.css">--%>
 </head>
 <body>
 <section>
@@ -30,10 +31,12 @@
             <dt>To Time (exclusive):</dt>
             <dd><input type="time" name="endTime" value="${param.endTime}"></dd>
         </dl>
-        <button type="submit">Filter</button>
+        <button type="submit">
+            <a href="${pageContext.request.contextPath}/meals/filer">Filter</a>
+        </button>
     </form>
     <hr/>
-    <a href="meals?action=create">Add Meal</a>
+    <a href="${pageContext.request.contextPath}/meals/create">Add Meal</a>
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
@@ -55,11 +58,12 @@
                 </td>
                 <td>${meal.description}</td>
                 <td>${meal.calories}</td>
-                <td><a href="meals?action=update&id=${meal.id}">Update</a></td>
-                <td><a href="meals?action=delete&id=${meal.id}">Delete</a></td>
+                <td><a href="${pageContext.request.contextPath}/meals/update/${meal.id}">Update</a></td>
+                <td><a href="${pageContext.request.contextPath}/meals/delete/${meal.id}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>
 </section>
+<jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
