@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="Topjava" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" id="b6a174fe-9cda-4410-af25-bdf04e1fed39"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xmlns:con="http://eviware.com/soapui/config"
-                    xsi:schemaLocation="http://eviware.com/soapui/config https://raw.githubusercontent.com/SmartBear/soapui/next/soapui/src/main/xsd/soapui/soapui.xsd">
+<con:soapui-project activeEnvironment="Default" name="Topjava" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" id="b6a174fe-9cda-4410-af25-bdf04e1fed39" xsi:schemaLocation="http://eviware.com/soapui/config https://raw.githubusercontent.com/SmartBear/soapui/next/soapui/src/main/xsd/soapui/soapui.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
     <con:settings/>
     <con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:8080" type="rest" id="eebe6f3c-c045-444a-ae8f-c0f4bbb345b5">
         <con:settings/>
@@ -10,7 +7,7 @@
         <con:endpoints>
             <con:endpoint>http://localhost:8080</con:endpoint>
         </con:endpoints>
-        <con:resource name="users" path="с" id="6da03be8-b9dc-43d8-a333-3253fa8d4dad">
+        <con:resource name="users" path="/topjava/rest/admin/users" id="6da03be8-b9dc-43d8-a333-3253fa8d4dad">
             <con:settings/>
             <con:parameters/>
             <con:method name="" method="GET" id="d020d56b-e008-4f4a-8234-35767b093863">
@@ -26,7 +23,7 @@
                     <con:mediaType>application/json</con:mediaType>
                     <con:status>200</con:status>
                     <con:params/>
-                    <con:element xmlns:ns="http://localhost/topjava/rest/admin/users/100000">ns:Response</con:element>
+                    <con:element xmlns:ns="http://localhost:8080/topjava/rest/admin/users/100000">ns:Response</con:element>
                 </con:representation>
                 <con:representation type="RESPONSE">
                     <con:mediaType>application/json;charset=UTF-8</con:mediaType>
